@@ -1,0 +1,5 @@
+[workspace]
+members = [
+  "crates/jankurai-audit-dedup",
+]
+resolver = "2"

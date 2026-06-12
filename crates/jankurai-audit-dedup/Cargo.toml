@@ -1,0 +1,20 @@
+[package]
+name = "jankurai-audit-dedup"
+version = "0.1.0"
+edition = "2021"
+description = "Copy-code redundancy scanner for the jankurai audit standard."
+license = "MIT"
+repository = "https://github.com/neverhuman/jankurai-tools-dedup"
+homepage = "https://github.com/neverhuman/jankurai"
+keywords = ["agent", "audit", "copy-code", "dedup", "redundancy"]
+categories = ["development-tools"]
+
+[dependencies]
+anyhow = "1.0"
+jankurai-audit-kernel = { git = "https://github.com/neverhuman/jankurai-tools-kernel.git", tag = "jankurai-tools-kernel-v1.7.0-split.0", package = "jankurai-audit-kernel", version = "0.1.0" }
+once_cell = "1.21"
+regex = "1.12"
+serde = { version = "1.0", features = ["derive"] }
+sha2 = "0.10"
+toml = "0.9"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
