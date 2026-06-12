@@ -1,9 +1,57 @@
 {
   "workspace": "jankurai-tools-dedup",
   "tests": {
+    "crates/": {
+      "command": "cargo test --workspace --locked",
+      "purpose": "run the Rust workspace test suite for the jankurai copy-code dedup crate"
+    },
+    "Cargo.toml": {
+      "command": "cargo check --workspace --locked",
+      "purpose": "verify the workspace manifest builds with the locked dependency graph"
+    },
+    "Cargo.lock": {
+      "command": "cargo check --workspace --locked",
+      "purpose": "verify the locked dependency graph resolves and stays consistent"
+    },
+    "schemas/": {
+      "command": "cargo test --workspace --locked",
+      "purpose": "verify the copy-code report schema stays present and parseable"
+    },
+    "Justfile": {
+      "command": "bash scripts/ci-local.sh required",
+      "purpose": "verify the root command surface lanes are runnable"
+    },
+    "VERSION": {
+      "command": "bash scripts/ci-local.sh required",
+      "purpose": "verify the declared crate version stays coherent with release metadata"
+    },
+    "CHANGELOG.md": {
+      "command": "bash scripts/ci-local.sh required",
+      "purpose": "verify the changelog tracks released versions"
+    },
+    "README.md": {
+      "command": "bash scripts/ci-local.sh required",
+      "purpose": "verify the root readme routes to the workspace layout"
+    },
+    "LICENSE": {
+      "command": "bash scripts/ci-local.sh required",
+      "purpose": "verify the license file is present and unmodified"
+    },
     "AGENTS.md": {
       "command": "bash scripts/ci-local.sh required",
       "purpose": "verify split-family agent routing remains present"
+    },
+    "CODEOWNERS": {
+      "command": "bash scripts/ci-local.sh required",
+      "purpose": "verify code ownership routing stays coherent with the owner map"
+    },
+    "CLAUDE.md": {
+      "command": "bash scripts/ci-local.sh required",
+      "purpose": "verify the thin IDE/agent adapter routes to AGENTS.md"
+    },
+    "tools/": {
+      "command": "bash scripts/ci-local.sh required",
+      "purpose": "verify the canonical security lane wrapper stays runnable"
     },
     "SPLIT.md": {
       "command": "bash scripts/ci-local.sh required",
@@ -17,6 +65,10 @@
       "command": "bash scripts/ci-local.sh required",
       "purpose": "verify split control maps and standard metadata"
     },
+    "docs/": {
+      "command": "bash scripts/ci-local.sh required",
+      "purpose": "verify agent-readable documentation stays present"
+    },
     "ops/": {
       "command": "bash scripts/ci-local.sh required",
       "purpose": "verify pinned CI script entrypoints"
@@ -24,6 +76,18 @@
     "scripts/": {
       "command": "bash scripts/ci-local.sh required",
       "purpose": "verify local CI and fusion helpers"
+    },
+    ".github/": {
+      "command": "bash scripts/ci-local.sh required",
+      "purpose": "verify CI workflow entrypoints stay pinned and thin"
+    },
+    "rust-toolchain.toml": {
+      "command": "cargo check --workspace --locked",
+      "purpose": "verify the pinned toolchain channel and components stay consistent"
+    },
+    ".gitignore": {
+      "command": "bash scripts/ci-local.sh required",
+      "purpose": "verify the exclusion list keeps transient build paths untracked"
     },
     ".": {
       "command": "bash scripts/ci-local.sh required",

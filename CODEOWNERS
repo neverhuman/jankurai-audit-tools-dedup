@@ -1,0 +1,14 @@
+# Code ownership for jankurai-tools-dedup. Mirrors agent/owner-map.json.
+# Every top-level path routes to an accountable owner team.
+
+*                       @neverhuman/jankurai-maintainers
+
+/crates/                @neverhuman/jankurai-tools
+/schemas/               @neverhuman/jankurai-standard
+/agent/                 @neverhuman/jankurai-agent
+/ops/                   @neverhuman/jankurai-ops
+/scripts/               @neverhuman/jankurai-ops
+/.github/               @neverhuman/jankurai-ops
+/docs/                  @neverhuman/jankurai-standard
+/tools/                 @neverhuman/jankurai-ops
+AGENTS.md               @neverhuman/jankurai-agent

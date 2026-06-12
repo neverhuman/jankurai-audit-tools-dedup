@@ -1,0 +1,67 @@
+# Live minimal lane set for jankurai-tools-dedup. Every lane command executes in
+# this repo alone and is mirrored by the root Justfile and ops/ci/<lane>.sh.
+
+[[lane]]
+name = "fast"
+command = "just fast"
+purpose = "deterministic check + nextest fast loop for agent iteration"
+command_id = "lane.fast"
+kind = "validation"
+cost = 5
+rules_covered = ["HLT-001-DEAD-MARKER", "HLT-003-OWNERLESS-PATH", "HLT-004-UNMAPPED-PROOF", "HLT-008-FALSE-GREEN-RISK"]
+required_artifacts = []
+timeout_seconds = 900
+requires_network = false
+destructive = false
+
+[[lane]]
+name = "security"
+command = "just security"
+purpose = "secret scanning plus dependency vulnerability scanning"
+command_id = "lane.security"
+kind = "security"
+cost = 20
+rules_covered = ["HLT-009-GENERATED-SECURITY", "HLT-010-SECRET-SPRAWL", "HLT-016-SUPPLY-CHAIN-DRIFT", "HLT-020-CI-HARDENING-GAP"]
+required_artifacts = []
+timeout_seconds = 1800
+requires_network = false
+destructive = false
+
+[[lane]]
+name = "audit"
+command = "just audit"
+purpose = "write .jankurai/repo-score.json and .jankurai/repo-score.md"
+command_id = "lane.audit"
+kind = "audit"
+cost = 10
+rules_covered = ["HLT-001-DEAD-MARKER", "HLT-003-OWNERLESS-PATH", "HLT-004-UNMAPPED-PROOF", "HLT-008-FALSE-GREEN-RISK"]
+required_artifacts = [".jankurai/repo-score.json", ".jankurai/repo-score.md"]
+timeout_seconds = 900
+requires_network = false
+destructive = false
+
+[[lane]]
+name = "copy-code"
+command = "cargo test --workspace --locked"
+purpose = "scan the repository for exact and high-confidence duplicated source code"
+command_id = "lane.copy-code"
+kind = "analysis"
+cost = 12
+rules_covered = ["HLT-043-COPY-PASTE-BAD-BEHAVIOR"]
+required_artifacts = []
+timeout_seconds = 1800
+requires_network = false
+destructive = false
+
+[[lane]]
+name = "full"
+command = "just check"
+purpose = "run format, lint, fast lane, security, and self-audit as the merge gate"
+command_id = "lane.full"
+kind = "release"
+cost = 50
+supersedes = ["fast", "audit", "security", "copy-code"]
+required_artifacts = [".jankurai/repo-score.json", ".jankurai/repo-score.md"]
+timeout_seconds = 3600
+requires_network = false
+destructive = false
