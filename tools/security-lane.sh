@@ -31,9 +31,3 @@ step syft false
 syft . -o cyclonedx-json=target/jankurai/security/sbom.json || true
 step grype false
 grype sbom:target/jankurai/security/sbom.json || true
-
-# Workflow hardening lint (slsa-aware action pinning + permissions checks).
-step zizmor false
-zizmor .github/workflows || true
-step actionlint false
-actionlint || true

@@ -8,6 +8,13 @@ version string lives in [`VERSION`](VERSION).
 
 ## [Unreleased]
 
+### Removed
+
+- GitHub Actions workflows (`.github/`), the workflow-only job aggregator
+  (`ops/ci/aggregate.sh`), and the zizmor/actionlint workflow lint. GitHub is a
+  publishing mirror only; CI, scoring, and release builds run on our own
+  servers.
+
 ### Added
 
 - Root `Justfile` command surface with `setup`, `fast`, `check`, `security`, and

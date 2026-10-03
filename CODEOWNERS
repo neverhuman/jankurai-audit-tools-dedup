@@ -8,7 +8,6 @@
 /agent/                 @neverhuman/jankurai-agent
 /ops/                   @neverhuman/jankurai-ops
 /scripts/               @neverhuman/jankurai-ops
-/.github/               @neverhuman/jankurai-ops
 /docs/                  @neverhuman/jankurai-standard
 /tools/                 @neverhuman/jankurai-ops
 AGENTS.md               @neverhuman/jankurai-agent

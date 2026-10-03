@@ -28,9 +28,10 @@ Releases are cut through the release gate, not by hand:
    [`CHANGELOG.md`](../CHANGELOG.md).
 2. Run the full local launch gate: `just check` (format, lint, fast lane,
    security, self-audit).
-3. Push the version commit. The
-   [`ci.yml`](../.github/workflows/ci.yml) workflow runs the build, security, and
-   jankurai audit jobs and uploads the `repo-score` artifacts.
+3. Push the version commit. Forge CI on our own hosts runs the build,
+   security, and jankurai audit lanes and keeps the `repo-score` artifacts.
+   GitHub is a publishing mirror only; releases are built and signed on our
+   own servers, and a separate change introduces key-based release signing.
 4. Tag the release commit with `jankurai-tools-dedup-v<version>-split.<N>`. The
    tag mirror in [`.jeryu/repo.toml`](../.jeryu/repo.toml) publishes the immutable
    tag to the public GitHub mirror.
@@ -76,10 +77,9 @@ artifact, not a claim:
   backup; any prior release is rebuildable bit-for-bit from its tag.
 - **Rollback**: the rollback procedure above re-points consumers at the last
   known-good immutable tag.
-- **Monitoring**: the CI audit job uploads `repo-score` artifacts so score
+- **Monitoring**: the CI audit lane keeps `repo-score` artifacts so score
   regressions are monitored on every push and pull request.
 - **Abuse and rate limit controls**: this crate ships no network surface, so the
-  only spend or abuse risk is CI runner minutes, which are bounded by the per-job
-  `timeout-minutes` in [`ci.yml`](../.github/workflows/ci.yml) and the per-lane
+  only spend or abuse risk is CI runner time, which is bounded by the per-lane
   `timeout_seconds` in [`agent/proof-lanes.toml`](../agent/proof-lanes.toml). A
   rate limit is therefore enforced structurally rather than at runtime.
