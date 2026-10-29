@@ -11,14 +11,14 @@ Copy-code scanner, cross-checks, variety detector source snapshots, and fingerpr
 
 ## Repositories
 
-- Historical Jeryu repo: `root/jankurai-tools-dedup`
-- Primary GitHub repository: `neverhuman/jankurai-tools-dedup`
+- Authoritative Jeryu repo: `root/jankurai-tools-dedup`
+- Public GitHub mirror: `neverhuman/jankurai-audit-tools-dedup`
 - Release tag pattern: `jankurai-tools-dedup-v1.7.0-split.0`
 - Source extraction commit: `cea83b0cbe204be276a2f0299cd760f6812ea2b0`
 
 ## Split Rules
 
-- GitHub is authoritative; Jeryu refs are retained as historical inputs.
+- Jeryu is authoritative; GitHub is the public publishing mirror.
 - Release builds depend on immutable GitHub tags, not branches.
 - Local development uses the hub `scripts/fuse.sh` output under `.fusion/`.
 - Committed manifests must not depend on sibling checkout paths.
